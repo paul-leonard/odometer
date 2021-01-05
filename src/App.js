@@ -36,17 +36,41 @@ class Odometer extends React.Component {
       milesCount: 0,
       distanceUnits: "miles",
     }
+    this.oneClicked = this.oneClicked.bind(this);
+    this.tenClicked = this.tenClicked.bind(this);
     this.hundredClicked = this.hundredClicked.bind(this);
+    this.thousandClicked = this.thousandClicked.bind(this);
   }
 
-  // calculateNewValue(numberToAdd) {
-    
-  //   return newValue
-  // }
+  calculateNewValue(numberToAdd) {
+    let newValue = this.state.milesCount + numberToAdd
+    if (newValue > 9999) {
+      newValue -= 9999
+    }
+    return newValue
+  }
+
+  oneClicked() {
+    this.setState({
+      milesCount: this.calculateNewValue(1)
+    });
+  }
+
+  tenClicked() {
+    this.setState({
+      milesCount: this.calculateNewValue(10)
+    });
+  }
 
   hundredClicked() {
     this.setState({
-      milesCount: (this.state.milesCount + 100)
+      milesCount: this.calculateNewValue(100)
+    });
+  }
+
+  thousandClicked() {
+    this.setState({
+      milesCount: this.calculateNewValue(1000)
     });
   }
 
