@@ -33,23 +33,31 @@ class Odometer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      milesCount: 747,
+      milesCount: 0,
       distanceUnits: "miles",
     }
     this.hundredClicked = this.hundredClicked.bind(this);
   }
 
+  // calculateNewValue(numberToAdd) {
+    
+  //   return newValue
+  // }
+
   hundredClicked() {
     this.setState({
-      milesCount: 777,
+      milesCount: (this.state.milesCount + 100)
     });
   }
 
   render() {
     return(
       <>
-        <h1> {this.state.milesCount} {this.state.distanceUnits}</h1>
+        <h1> {this.state.milesCount.toString().padStart(4,0)} {this.state.distanceUnits}</h1>
+        <button onClick={this.oneClicked}>+1</button>
+        <button onClick={this.tenClicked}>+10</button>
         <button onClick={this.hundredClicked}>+100</button>
+        <button onClick={this.thousandClicked}>+1000</button>
       </>
     )};
 }
